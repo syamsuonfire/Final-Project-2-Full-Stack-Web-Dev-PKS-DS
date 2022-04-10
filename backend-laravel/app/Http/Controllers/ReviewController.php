@@ -2,48 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class CategoryController extends Controller
+class ReviewController extends Controller
 {
     /**
      * index
      *
      * @return void
      */
-    public function index()
-    {
-        //get data from table categories
-        $categories = Category::latest()->get();
-
-        //make response JSON
-        return response()->json([
-            'success' => true,
-            'message' => 'List Data Category',
-            'data'    => $categories
-        ], 200);
-    }
-
-    /**
-     * show
-     *
-     * @param  mixed $id
-     * @return void
-     */
     public function show($id)
     {
-        //find category by ID
-        $category = Category::findOrfail($id);
+        //get data from table reviewers
+        $review = Review::where('book_id', $id)->get();
 
         //make response JSON
         return response()->json([
             'success' => true,
-            'message' => 'Detail Data Category',
-            'data'    => $category
+            'message' => 'List Review',
+            'data'    => $review
         ], 200);
     }
+
 
     /**
      * store
@@ -55,8 +38,10 @@ class CategoryController extends Controller
     {
         //set validation
         $validator = Validator::make($request->all(), [
-            'category_name'   => 'required',
-
+            'review'   => 'required',
+            'rating' => 'required',
+            'reviewer_id' => 'required',
+            'book_id' => 'required',
         ]);
 
         //response error validation
@@ -65,25 +50,27 @@ class CategoryController extends Controller
         }
 
         //save to database
-        $category = Category::create([
-            'category_name'     => $request->category_name,
-
+        $review = Review::create([
+            'review'  => $request->review,
+            'rating' => $request->rating,
+            'reviewer_id' => $request->reviewer_id,
+            'book_id' => $request->book_id
         ]);
 
         //success save to database
-        if ($category) {
+        if ($review) {
 
             return response()->json([
                 'success' => true,
-                'message' => 'Category Created',
-                'data'    => $category
+                'message' => 'Review Created',
+                'data'    => $review
             ], 201);
         }
 
         //failed save to database
         return response()->json([
             'success' => false,
-            'message' => 'Category Failed to Save',
+            'message' => 'Review Failed to Save',
         ], 409);
     }
 
@@ -91,15 +78,17 @@ class CategoryController extends Controller
      * update
      *
      * @param  mixed $request
-     * @param  mixed $category
+     * @param  mixed $reviewer
      * @return void
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Review $review)
     {
         //set validation
         $validator = Validator::make($request->all(), [
-            'category_name'   => 'required',
-
+            'review'  => $request->review,
+            'rating' => $request->rating,
+            'reviewer_id' => $request->reviewer_id,
+            'book_id' => $request->book_id
         ]);
 
         //response error validation
@@ -107,28 +96,30 @@ class CategoryController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-        //find category by ID
-        $category = Category::findOrFail($category->id);
+        //find review by ID
+        $review = Review::findOrFail($review->id);
 
-        if ($category) {
+        if ($review) {
 
-            //update category
-            $category->update([
-                'category_name'     => $request->category_name,
-
+            //update review
+            $review->update([
+                'review'  => $request->review,
+                'rating' => $request->rating,
+                'reviewer_id' => $request->reviewer_id,
+                'book_id' => $request->book_id
             ]);
 
             return response()->json([
                 'success' => true,
-                'message' => 'Category Updated',
-                'data'    => $category
+                'message' => 'Reviewer Updated',
+                'data'    => $review
             ], 200);
         }
 
-        //data category not found
+        //data reviewer not found
         return response()->json([
             'success' => false,
-            'message' => 'Category Not Found',
+            'message' => 'Reviewer Not Found',
         ], 404);
     }
 
@@ -140,24 +131,24 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //find category by ID
-        $category = Category::findOrfail($id);
+        //find reviewer by ID
+        $review = Review::findOrfail($id);
 
-        if ($category) {
+        if ($review) {
 
-            //delete category
-            $category->delete();
+            //delete review
+            $review->delete();
 
             return response()->json([
                 'success' => true,
-                'message' => 'Category Deleted',
+                'message' => 'Review Deleted',
             ], 200);
         }
 
-        //data category not found
+        //data review not found
         return response()->json([
             'success' => false,
-            'message' => 'Category Not Found',
+            'message' => 'Review Not Found',
         ], 404);
     }
 }

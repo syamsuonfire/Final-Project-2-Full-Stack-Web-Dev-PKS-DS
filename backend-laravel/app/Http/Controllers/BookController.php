@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class CategoryController extends Controller
+class BookController extends Controller
 {
     /**
      * index
@@ -16,13 +16,13 @@ class CategoryController extends Controller
     public function index()
     {
         //get data from table categories
-        $categories = Category::latest()->get();
+        $books = Book::latest()->get();
 
         //make response JSON
         return response()->json([
             'success' => true,
-            'message' => 'List Data Category',
-            'data'    => $categories
+            'message' => 'List Books Data',
+            'data'    => $books
         ], 200);
     }
 
@@ -35,13 +35,13 @@ class CategoryController extends Controller
     public function show($id)
     {
         //find category by ID
-        $category = Category::findOrfail($id);
+        $book = Book::findOrfail($id);
 
         //make response JSON
         return response()->json([
             'success' => true,
-            'message' => 'Detail Data Category',
-            'data'    => $category
+            'message' => 'Detail Book Data',
+            'data'    => $book
         ], 200);
     }
 
@@ -55,7 +55,9 @@ class CategoryController extends Controller
     {
         //set validation
         $validator = Validator::make($request->all(), [
-            'category_name'   => 'required',
+            'title'   => 'required',
+            'author_id'   => 'required',
+            'category_id'   => 'required',
 
         ]);
 
@@ -65,25 +67,26 @@ class CategoryController extends Controller
         }
 
         //save to database
-        $category = Category::create([
-            'category_name'     => $request->category_name,
-
+        $book = Book::create([
+            'title'     => $request->title,
+            'category_id'     => $request->category_id,
+            'author_id'     => $request->author_id,
         ]);
 
         //success save to database
-        if ($category) {
+        if ($book) {
 
             return response()->json([
                 'success' => true,
-                'message' => 'Category Created',
-                'data'    => $category
+                'message' => 'Book Created',
+                'data'    => $book
             ], 201);
         }
 
         //failed save to database
         return response()->json([
             'success' => false,
-            'message' => 'Category Failed to Save',
+            'message' => 'Book Failed to Save',
         ], 409);
     }
 
@@ -94,11 +97,13 @@ class CategoryController extends Controller
      * @param  mixed $category
      * @return void
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Book $book)
     {
         //set validation
         $validator = Validator::make($request->all(), [
-            'category_name'   => 'required',
+            'title'   => 'required',
+            'category_id'   => 'required',
+            'author_id'   => 'required',
 
         ]);
 
@@ -108,27 +113,29 @@ class CategoryController extends Controller
         }
 
         //find category by ID
-        $category = Category::findOrFail($category->id);
+        $book = Book::findOrFail($book->id);
 
-        if ($category) {
+        if ($book) {
 
-            //update category
-            $category->update([
-                'category_name'     => $request->category_name,
+            //update book
+            $book->update([
+                'title'     => $request->title,
+                'category_id'     => $request->category_id,
+                'author_id'     => $request->author_id,
 
             ]);
 
             return response()->json([
                 'success' => true,
-                'message' => 'Category Updated',
-                'data'    => $category
+                'message' => 'Book Updated',
+                'data'    => $book
             ], 200);
         }
 
         //data category not found
         return response()->json([
             'success' => false,
-            'message' => 'Category Not Found',
+            'message' => 'Book Not Found',
         ], 404);
     }
 
@@ -141,23 +148,23 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //find category by ID
-        $category = Category::findOrfail($id);
+        $book = Book::findOrfail($id);
 
-        if ($category) {
+        if ($book) {
 
-            //delete category
-            $category->delete();
+            //delete book
+            $book->delete();
 
             return response()->json([
                 'success' => true,
-                'message' => 'Category Deleted',
+                'message' => 'Book Deleted',
             ], 200);
         }
 
         //data category not found
         return response()->json([
             'success' => false,
-            'message' => 'Category Not Found',
+            'message' => 'Book Not Found',
         ], 404);
     }
 }

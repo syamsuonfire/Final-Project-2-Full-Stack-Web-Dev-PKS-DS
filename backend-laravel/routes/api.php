@@ -32,6 +32,9 @@ Route::apiResource('/author', 'AuthorController');
  * route resource reviewer
  */
 Route::apiResource('/reviewer', 'ReviewerController');
+Route::apiResource('/review', 'ReviewController');
+
+Route::apiResource('/book', 'BookController');
 
 // Route::group([
 //     'prefix' => 'auth' ,
