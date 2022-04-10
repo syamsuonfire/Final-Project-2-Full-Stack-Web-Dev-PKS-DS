@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\OtpCode;
 use App\Carbon;
-use App\Http\Controllers\Controller;
+use App\OtpCode;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UpdatePasswordController extends Controller
@@ -19,21 +20,21 @@ class UpdatePasswordController extends Controller
      */
     public function __invoke(Request $request)
     {
-        
+
         $allRequest = $request->all();
 
         //set validation
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make($allRequest, [
             'email'   => 'required',
-            'password' => 'required|confirmed|6',
+            'password' => 'required|confirmed|min:6',
         ]);
-        
+
         //response error validation
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
 
-        User::where('email' , $request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
         if (!$user) {
             return response()->json([
@@ -42,14 +43,13 @@ class UpdatePasswordController extends Controller
             ], 400);
         }
 
-            $user->update([
-              'password' => Hash::make($request->password)  
-            ]);
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
 
-            return response()->json([
-                'success' => true,
-                'message' => 'password berhasil diubah'
-            ]);
-        
+        return response()->json([
+            'success' => true,
+            'message' => 'password berhasil diubah'
+        ]);
     }
 }

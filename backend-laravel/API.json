@@ -1,0 +1,783 @@
+{
+	"info": {
+		"_postman_id": "6e9d6a54-f39d-454a-8bb9-665779c726bb",
+		"name": "backend-laravel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "Get Author",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/author",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"author"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Author",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Muksin Alatas",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "muksin@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "bio",
+									"value": "ini bio muksin",
+									"type": "text"
+								},
+								{
+									"key": "books",
+									"value": "conan",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/author",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"author"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Author Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/author/9f1a5f3f-0d34-46b5-ba74-98474aa35797",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"author",
+								"9f1a5f3f-0d34-46b5-ba74-98474aa35797"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Author",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Prayoga Erlangga Putra\",\r\n    \"email\" : \"prayogaerlangga@gmail.com\",\r\n    \"bio\" : \"ini bio yoga\",\r\n    \"books\" : \"naruto\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/author/2dabba46-3a5d-44c5-a334-b54bd127860f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"author",
+								"2dabba46-3a5d-44c5-a334-b54bd127860f"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Prayoga Erlangga",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "prayogaerlangga@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "bio",
+									"value": "ini bio aja",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Author",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/author/9f1a5f3f-0d34-46b5-ba74-98474aa35797",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"author",
+								"9f1a5f3f-0d34-46b5-ba74-98474aa35797"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "getCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_name",
+									"value": "Non Fiksi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/category/7d7c9c74-9bc4-4240-8ecd-cbde552d96b6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"category",
+								"7d7c9c74-9bc4-4240-8ecd-cbde552d96b6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category_name\" : \"Komik\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/category/7d7c9c74-9bc4-4240-8ecd-cbde552d96b6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"category",
+								"7d7c9c74-9bc4-4240-8ecd-cbde552d96b6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/category/7d7c9c74-9bc4-4240-8ecd-cbde552d96b6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"category",
+								"7d7c9c74-9bc4-4240-8ecd-cbde552d96b6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "GetBook",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/book",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Naruto\",\r\n    \"description\" : \"test\",\r\n    \"rating\" : 5,\r\n    \"category_id\" : \"0d7132d9-a9de-4238-a769-f2af993ca842\",\r\n    \"author_id\" : \"2dabba46-3a5d-44c5-a334-b54bd127860f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/book",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Book",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"One-Piece\",\r\n    \"description\" : \"test\",\r\n    \"rating\" : 5,\r\n    \"category_id\" : \"0d7132d9-a9de-4238-a769-f2af993ca842\",\r\n    \"author_id\" : \"2dabba46-3a5d-44c5-a334-b54bd127860f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/book/e56bf98b-77ff-4eed-bf71-4d8c7f380fa4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"e56bf98b-77ff-4eed-bf71-4d8c7f380fa4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Book",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/book/e56bf98b-77ff-4eed-bf71-4d8c7f380fa4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"e56bf98b-77ff-4eed-bf71-4d8c7f380fa4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Book",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/book/e56bf98b-77ff-4eed-bf71-4d8c7f380fa4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"e56bf98b-77ff-4eed-bf71-4d8c7f380fa4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviewer",
+			"item": [
+				{
+					"name": "Read Reviewer Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/reviewer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"reviewer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Reviewer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\" : \"Prayoga erlangga putra\",\r\n   \"email\" : \"prayoga@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/reviewer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"reviewer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Reviewer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Muksin Alatas\",\r\n    \"email\" : \"muksin@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/reviewer/577431e3-2266-4a52-84ac-a26d327072d5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"reviewer",
+								"577431e3-2266-4a52-84ac-a26d327072d5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Reviewer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/reviewer/577431e3-2266-4a52-84ac-a26d327072d5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"reviewer",
+								"577431e3-2266-4a52-84ac-a26d327072d5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Reviewer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/reviewer/577431e3-2266-4a52-84ac-a26d327072d5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"reviewer",
+								"577431e3-2266-4a52-84ac-a26d327072d5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "Get Review",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/review/17d33e8c-96cd-4ae4-bac1-c64babfd0fae",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"review",
+								"17d33e8c-96cd-4ae4-bac1-c64babfd0fae"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Review",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"book_id\" : \"17d33e8c-96cd-4ae4-bac1-c64babfd0fae\",\r\n    \"reviewer_id\" : \"577431e3-2266-4a52-84ac-a26d327072d5\",\r\n    \"review\" : \"Buku bagus\",\r\n    \"rating\" : 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/review",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"review"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Review",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/review/b499567e-cc18-492a-8e32-d97896426e74",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"review",
+								"b499567e-cc18-492a-8e32-d97896426e74"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "RegisterUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Prayoga Erlangga Putra\",\r\n    \"username\" : \"prayogaep1\",\r\n    \"email\" : \"prayoga1@gmail.com\",\r\n    \"password\" : \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RegenerateOTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"prayoga1@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/regenerate-otp-code",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"regenerate-otp-code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"otp\" : 597817\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/verification",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"verification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePassword",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"prayoga1@gmail.com\",\r\n    \"password\" : \"password\",\r\n    \"password_confirmation\" : \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/update-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"update-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"prayoga1@gmail.com\",\r\n    \"password\" : \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

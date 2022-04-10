@@ -8,10 +8,12 @@ Nama Kelompok :
 
     Backend :
     - Anisah Fauziyah
-        Pengerjaan : Crud Category, Author, Reviewer, dan Login
+        Pengerjaan : Crud Category, Author, Reviewer, dan Otp_code, Regenerateotp, ChangePassword
     - Prayoga Erlangga Putra
-        Pengerjaan : Crud Book, Review, dan Dokumentasi API
+        Pengerjaan : Crud Register, Login, Book, Review, dan Dokumentasi API
 
     Frontend :
     - Syamsu Rijal
     - Fandi
+
+Dokumentasi API : di file API.json dalam folder backend-laravel

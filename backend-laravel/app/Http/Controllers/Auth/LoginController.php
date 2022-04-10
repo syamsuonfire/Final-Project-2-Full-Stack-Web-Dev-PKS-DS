@@ -22,11 +22,11 @@ class LoginController extends Controller
         $allRequest = $request->all();
 
         //set validation
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make($allRequest, [
             'email'   => 'required',
             'password' => 'required'
         ]);
-        
+
         //response error validation
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
@@ -34,7 +34,7 @@ class LoginController extends Controller
 
         $credentials = request(['email', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
+        if (!$token = auth()->attempt($credentials)) {
             return response()->json([
                 'success' => false,
                 'message' => 'Email atau password tidak ditemukan'
@@ -48,7 +48,6 @@ class LoginController extends Controller
                 'user' => auth()->user(),
                 'token' => $token
             ]
-            ], 401);
-    
+        ], 401);
     }
 }
