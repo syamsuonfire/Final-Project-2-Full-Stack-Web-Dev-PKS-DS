@@ -16,7 +16,17 @@ class BookController extends Controller
     public function index()
     {
         //get data from table categories
-        $books = Book::latest()->get();
+        $books = Book::all();
+
+        foreach ($books as $book) {
+            [
+                'title' => $book->title,
+                'rating' => $book->rating,
+                'description' => $book->description,
+                'author' => $book->author->name,
+                'category' => $book->category->category_name,
+            ];
+        }
 
         //make response JSON
         return response()->json([
