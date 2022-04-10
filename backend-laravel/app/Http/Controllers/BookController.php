@@ -68,11 +68,11 @@ class BookController extends Controller
             return response()->json($validator->errors(), 400);
         }
         //save to database
-        if ($request->image) {
+        if ($request->image_url) {
             $book = Book::create([
                 'title'     => $request->title,
                 'rating'     => $request->rating,
-                'image'     => $request->image,
+                'image_url'     => $request->image_url,
                 'description'     => $request->description,
                 'category_id'     => $request->category_id,
                 'author_id'     => $request->author_id,
@@ -118,9 +118,10 @@ class BookController extends Controller
         //set validation
         $validator = Validator::make($request->all(), [
             'title'   => 'required',
-            'category_id'   => 'required',
+            'rating'   => 'required',
+            'description'   => 'required',
             'author_id'   => 'required',
-
+            'category_id'   => 'required',
         ]);
 
         //response error validation
@@ -132,15 +133,25 @@ class BookController extends Controller
         $book = Book::findOrFail($book->id);
 
         if ($book) {
-
-            //update book
-            $book->update([
-                'title'     => $request->title,
-                'category_id'     => $request->category_id,
-                'author_id'     => $request->author_id,
-
-            ]);
-
+            if ($request->image_url) {
+                //update book
+                $book->update([
+                    'title'     => $request->title,
+                    'rating'     => $request->rating,
+                    'image_url'     => $request->image_url,
+                    'description'     => $request->description,
+                    'category_id'     => $request->category_id,
+                    'author_id'     => $request->author_id,
+                ]);
+            } else {
+                $book->update([
+                    'title'     => $request->title,
+                    'rating'     => $request->rating,
+                    'description'     => $request->description,
+                    'category_id'     => $request->category_id,
+                    'author_id'     => $request->author_id,
+                ]);
+            }
             return response()->json([
                 'success' => true,
                 'message' => 'Book Updated',
