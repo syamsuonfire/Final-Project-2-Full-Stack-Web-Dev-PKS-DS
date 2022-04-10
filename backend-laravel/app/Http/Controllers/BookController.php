@@ -21,6 +21,7 @@ class BookController extends Controller
             [
                 'title' => $book->title,
                 'rating' => $book->rating,
+                'year' => $book->year,
                 'description' => $book->description,
                 'author' => $book->author->name,
                 'category' => $book->category->category_name,
@@ -66,6 +67,7 @@ class BookController extends Controller
         $validator = Validator::make($request->all(), [
             'title'   => 'required',
             'rating'   => 'required',
+            'rating'   => 'year',
             'description'   => 'required',
             'author_id'   => 'required',
             'category_id'   => 'required',
@@ -81,6 +83,7 @@ class BookController extends Controller
             $book = Book::create([
                 'title'     => $request->title,
                 'rating'     => $request->rating,
+                'year'     => $request->year,
                 'image_url'     => $request->image_url,
                 'description'     => $request->description,
                 'category_id'     => $request->category_id,
@@ -91,6 +94,7 @@ class BookController extends Controller
             $book = Book::create([
                 'title'     => $request->title,
                 'rating'     => $request->rating,
+                'year'     => $request->year,
                 'description'     => $request->description,
                 'category_id'     => $request->category_id,
                 'author_id'     => $request->author_id,
@@ -128,6 +132,7 @@ class BookController extends Controller
         $validator = Validator::make($request->all(), [
             'title'   => 'required',
             'rating'   => 'required',
+            'year'   => 'required',
             'description'   => 'required',
             'author_id'   => 'required',
             'category_id'   => 'required',
@@ -147,6 +152,7 @@ class BookController extends Controller
                 $book->update([
                     'title'     => $request->title,
                     'rating'     => $request->rating,
+                    'year'     => $request->year,
                     'image_url'     => $request->image_url,
                     'description'     => $request->description,
                     'category_id'     => $request->category_id,
@@ -156,6 +162,7 @@ class BookController extends Controller
                 $book->update([
                     'title'     => $request->title,
                     'rating'     => $request->rating,
+                    'year'     => $request->year,
                     'description'     => $request->description,
                     'category_id'     => $request->category_id,
                     'author_id'     => $request->author_id,
