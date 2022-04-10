@@ -17,7 +17,6 @@ class BookController extends Controller
     {
         //get data from table categories
         $books = Book::all();
-
         foreach ($books as $book) {
             [
                 'title' => $book->title,
