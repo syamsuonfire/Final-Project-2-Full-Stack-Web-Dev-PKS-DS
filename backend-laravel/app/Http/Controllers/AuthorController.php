@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthorController extends Controller
 {
-      /**
+    public function __construct()
+    {
+        return $this->middleware('auth:api');
+    }
+    /**
      * index
      *
      * @return void
@@ -22,12 +26,11 @@ class AuthorController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'List Data Author',
-            'data'    => $authors 
+            'data'    => $authors
         ], 200);
-
     }
-    
-     /**
+
+    /**
      * show
      *
      * @param  mixed $id
@@ -44,9 +47,8 @@ class AuthorController extends Controller
             'message' => 'Detail Data Author',
             'data'    => $author
         ], 200);
-
     }
-    
+
     /**
      * store
      *
@@ -62,7 +64,7 @@ class AuthorController extends Controller
             'bio' => 'required',
             'books' => 'required',
         ]);
-        
+
         //response error validation
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
@@ -77,24 +79,22 @@ class AuthorController extends Controller
         ]);
 
         //success save to database
-        if($author) {
+        if ($author) {
 
             return response()->json([
                 'success' => true,
                 'message' => 'Author Created',
-                'data'    => $author  
+                'data'    => $author
             ], 201);
-
-        } 
+        }
 
         //failed save to database
         return response()->json([
             'success' => false,
             'message' => 'Author Failed to Save',
         ], 409);
-
     }
-    
+
     /**
      * update
      *
@@ -111,7 +111,7 @@ class AuthorController extends Controller
             'bio' => 'required',
             'books' => 'required',
         ]);
-        
+
         //response error validation
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
@@ -120,10 +120,10 @@ class AuthorController extends Controller
         //find author by ID
         $author = Author::findOrFail($author->id);
 
-        if($post) {
+        if ($author) {
 
             //update author
-            $post->update([
+            $author->update([
                 'name'  => $request->name,
                 'email' => $request->email,
                 'bio'   => $request->bio,
@@ -133,9 +133,8 @@ class AuthorController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Author Updated',
-                'data'    => $author  
+                'data'    => $author
             ], 200);
-
         }
 
         //data author not found
@@ -143,9 +142,8 @@ class AuthorController extends Controller
             'success' => false,
             'message' => 'Author Not Found',
         ], 404);
-
     }
-    
+
     /**
      * destroy
      *
@@ -157,7 +155,7 @@ class AuthorController extends Controller
         //find author by ID
         $author = Author::findOrfail($id);
 
-        if($author) {
+        if ($author) {
 
             //delete author
             $author->delete();
@@ -166,7 +164,6 @@ class AuthorController extends Controller
                 'success' => true,
                 'message' => 'Author Deleted',
             ], 200);
-
         }
 
         //data post not found

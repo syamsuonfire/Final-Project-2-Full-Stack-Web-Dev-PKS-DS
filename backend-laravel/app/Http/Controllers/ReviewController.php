@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Validator;
 
 class ReviewController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth:api')->except('show');
+    }
     /**
      * index
      *

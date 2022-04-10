@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth:api');
+    }
     /**
      * index
      *

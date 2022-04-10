@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Validator;
 
 class ReviewerController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth:api');
+    }
     /**
      * index
      *
@@ -22,12 +26,11 @@ class ReviewerController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'List Data Reviewer',
-            'data'    => $reviewers  
+            'data'    => $reviewers
         ], 200);
-
     }
-    
-     /**
+
+    /**
      * show
      *
      * @param  mixed $id
@@ -42,11 +45,10 @@ class ReviewerController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Detail Data Reviewer',
-            'data'    => $reviewer 
+            'data'    => $reviewer
         ], 200);
-
     }
-    
+
     /**
      * store
      *
@@ -60,7 +62,7 @@ class ReviewerController extends Controller
             'name'   => 'required',
             'email' => 'required',
         ]);
-        
+
         //response error validation
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
@@ -73,24 +75,22 @@ class ReviewerController extends Controller
         ]);
 
         //success save to database
-        if($reviewer) {
+        if ($reviewer) {
 
             return response()->json([
                 'success' => true,
                 'message' => 'Reviewer Created',
                 'data'    => $reviewer
             ], 201);
-
-        } 
+        }
 
         //failed save to database
         return response()->json([
             'success' => false,
             'message' => 'Reviewer Failed to Save',
         ], 409);
-
     }
-    
+
     /**
      * update
      *
@@ -105,7 +105,7 @@ class ReviewerController extends Controller
             'name'   => 'required',
             'email' => 'required',
         ]);
-        
+
         //response error validation
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
@@ -114,7 +114,7 @@ class ReviewerController extends Controller
         //find reviewer by ID
         $reviewer = Reviewer::findOrFail($reviewer->id);
 
-        if($reviewer) {
+        if ($reviewer) {
 
             //update reviewer
             $reviewer->update([
@@ -127,7 +127,6 @@ class ReviewerController extends Controller
                 'message' => 'Reviewer Updated',
                 'data'    => $reviewer
             ], 200);
-
         }
 
         //data reviewer not found
@@ -135,9 +134,8 @@ class ReviewerController extends Controller
             'success' => false,
             'message' => 'Reviewer Not Found',
         ], 404);
-
     }
-    
+
     /**
      * destroy
      *
@@ -149,7 +147,7 @@ class ReviewerController extends Controller
         //find reviewer by ID
         $reviewer = Reviewer::findOrfail($id);
 
-        if($reviewer) {
+        if ($reviewer) {
 
             //delete reviewer
             $reviewer->delete();
@@ -158,7 +156,6 @@ class ReviewerController extends Controller
                 'success' => true,
                 'message' => 'Reviewer Deleted',
             ], 200);
-
         }
 
         //data reviewer not found

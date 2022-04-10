@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Validator;
 
 class GenreController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth:api');
+    }
     /**
      * index
      *
@@ -22,12 +26,11 @@ class GenreController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'List Data Genre',
-            'data'    => $genres  
+            'data'    => $genres
         ], 200);
-
     }
-    
-     /**
+
+    /**
      * show
      *
      * @param  mixed $id
@@ -42,11 +45,10 @@ class GenreController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Detail Data Post',
-            'data'    => $genre 
+            'data'    => $genre
         ], 200);
-
     }
-    
+
     /**
      * store
      *
@@ -60,7 +62,7 @@ class GenreController extends Controller
             'genre_name'   => 'required',
 
         ]);
-        
+
         //response error validation
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
@@ -69,28 +71,26 @@ class GenreController extends Controller
         //save to database
         $genre = Genre::create([
             'genre_name'     => $request->genre_name,
-            
+
         ]);
 
         //success save to database
-        if($genre) {
+        if ($genre) {
 
             return response()->json([
                 'success' => true,
                 'message' => 'Genre Created',
-                'data'    => $genre 
+                'data'    => $genre
             ], 201);
-
-        } 
+        }
 
         //failed save to database
         return response()->json([
             'success' => false,
             'message' => 'Genre Failed to Save',
         ], 409);
-
     }
-    
+
     /**
      * update
      *
@@ -103,9 +103,9 @@ class GenreController extends Controller
         //set validation
         $validator = Validator::make($request->all(), [
             'genre_name'   => 'required',
-           
+
         ]);
-        
+
         //response error validation
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
@@ -114,20 +114,19 @@ class GenreController extends Controller
         //find post by ID
         $genre = Genre::findOrFail($genre->id);
 
-        if($genre) {
+        if ($genre) {
 
             //update post
             $genre->update([
                 'genre_name'     => $request->genre_name,
-               
+
             ]);
 
             return response()->json([
                 'success' => true,
                 'message' => 'Genre Updated',
-                'data'    => $genre  
+                'data'    => $genre
             ], 200);
-
         }
 
         //data post not found
@@ -135,9 +134,8 @@ class GenreController extends Controller
             'success' => false,
             'message' => 'Genre Not Found',
         ], 404);
-
     }
-    
+
     /**
      * destroy
      *
@@ -149,7 +147,7 @@ class GenreController extends Controller
         //find genre by ID
         $genre = Genre::findOrfail($id);
 
-        if($genre) {
+        if ($genre) {
 
             //delete genre
             $genre->delete();
@@ -158,7 +156,6 @@ class GenreController extends Controller
                 'success' => true,
                 'message' => 'Genre Deleted',
             ], 200);
-
         }
 
         //data genre not found
