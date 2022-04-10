@@ -16,4 +16,4 @@ Nama Kelompok :
     - Syamsu Rijal
     - Fandi
 
-Dokumentasi API : di file API.json dalam folder backend-laravel
+Dokumentasi API : https://documenter.getpostman.com/view/19689090/UVyyrs7h
