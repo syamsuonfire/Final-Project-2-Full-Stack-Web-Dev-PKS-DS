@@ -56,6 +56,8 @@ class BookController extends Controller
         //set validation
         $validator = Validator::make($request->all(), [
             'title'   => 'required',
+            'rating'   => 'required',
+            'description'   => 'required',
             'author_id'   => 'required',
             'category_id'   => 'required',
 
@@ -65,13 +67,27 @@ class BookController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-
         //save to database
-        $book = Book::create([
-            'title'     => $request->title,
-            'category_id'     => $request->category_id,
-            'author_id'     => $request->author_id,
-        ]);
+        if ($request->image) {
+            $book = Book::create([
+                'title'     => $request->title,
+                'rating'     => $request->rating,
+                'image'     => $request->image,
+                'description'     => $request->description,
+                'category_id'     => $request->category_id,
+                'author_id'     => $request->author_id,
+            ]);
+        } else {
+
+            $book = Book::create([
+                'title'     => $request->title,
+                'rating'     => $request->rating,
+                'description'     => $request->description,
+                'category_id'     => $request->category_id,
+                'author_id'     => $request->author_id,
+            ]);
+        }
+
 
         //success save to database
         if ($book) {

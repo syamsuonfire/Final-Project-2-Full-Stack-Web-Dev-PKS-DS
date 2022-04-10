@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    protected $fillable = ['title', 'author_id', 'category_id'];
+    protected $fillable = ['title', 'author_id', 'category_id', 'image', 'rating', 'description'];
     protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $incrementing = false;
