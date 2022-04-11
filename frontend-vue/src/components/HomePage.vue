@@ -6,7 +6,6 @@
                 <h2 class="page-header">WELCOME</h2>
                 <p>Welcome to Book Review</p>
             </div>
-            <SliderItem />
             <!-- <div class="container"> -->
             <div class="book_list">
                 <ListAPI />
@@ -18,7 +17,6 @@
 
 <script>
 import NavItem from "./NavItem";
-import SliderItem from "./SliderItem";
 import ListAPI from "./ListAPI";
 import FooterItem from "./FooterItem.vue";
 
@@ -29,7 +27,6 @@ export default {
     components: {
         NavItem,
         ListAPI,
-        SliderItem,
         FooterItem,
     },
 };
