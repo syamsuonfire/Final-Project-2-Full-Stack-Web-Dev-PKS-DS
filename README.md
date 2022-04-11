@@ -17,3 +17,7 @@ Nama Kelompok :
     - Fandi
 
 Dokumentasi API : https://documenter.getpostman.com/view/19689090/UVyyrs7h
+
+Link API Deploy : https://pks.guidelight.id/api
+
+Link Front-end Deploy : https://fullstack-two.vercel.app/#/
