@@ -35,20 +35,35 @@
                             <!-- <h3>{{returnid}}</h3>
                 <li v-for="v in vids">{{v.key}}</li> -->
                         </div>
+                        <div>
+                            <h4>
+                                <i
+                                    class="fa fa-bookmark"
+                                    aria-hidden="true"
+                                ></i>
+                                {{ book.category.category_name }}
+                            </h4>
+                        </div>
+                        <div>
+                            <h4>
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                {{ book.author.name }}
+                            </h4>
+                        </div>
                         <div class="vote">
-                            <p>
+                            <h4>
                                 <i class="fa fa-star-o" aria-hidden="true"></i>
                                 {{ book.rating }}
-                            </p>
+                            </h4>
                         </div>
                         <div class="release_date">
-                            <p>
+                            <h4>
                                 <i
                                     class="fa fa-calendar-o"
                                     aria-hidden="true"
                                 ></i>
                                 {{ book.year }}
-                            </p>
+                            </h4>
                         </div>
                         <div class="overview">
                             <p>{{ book.description }}</p>
