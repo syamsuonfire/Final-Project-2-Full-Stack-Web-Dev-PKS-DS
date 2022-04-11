@@ -106,7 +106,7 @@ export default {
     },
     methods: {
         getAPI1() {
-            axios.get("http://127.0.0.1:8000/api/book").then((response) => {
+            axios.get("http://pks.guidelight.id/api/book").then((response) => {
                 this.psikologi = response.data.data;
                 this.filter = response.data.data.filter(
                     (item) => item.category_id == 1
