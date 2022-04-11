@@ -48,6 +48,6 @@ class LoginController extends Controller
                 'user' => auth()->user(),
                 'token' => $token
             ]
-        ], 401);
+        ]);
     }
 }

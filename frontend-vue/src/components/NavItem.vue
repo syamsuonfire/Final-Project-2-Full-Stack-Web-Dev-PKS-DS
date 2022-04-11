@@ -71,8 +71,18 @@
                       <li><router-link to="/listmovie">All List</router-link></li> -->
                             </ul>
                         </li>
-                        <li>
+                        <li v-if="!this.loggedIn">
                             <router-link to="/login">Login</router-link>
+                        </li>
+
+                        <li v-if="!this.loggedIn">
+                            <router-link to="/register">Register</router-link>
+                        </li>
+
+                        <li class="nav-item" v-if="this.loggedIn">
+                            <a class="nav-link" href @click.prevent="logOut">
+                                <font-awesome-icon icon="sign-out-alt" /> LogOut
+                            </a>
                         </li>
                         <li>
                             <!-- <a href="#Contact" v-smooth-scroll="{ duration: 2000, offset: 0}">Contact</a> -->
@@ -93,7 +103,17 @@ export default {
             status: false,
         };
     },
-    methods: {},
+    computed: {
+        loggedIn() {
+            return this.$store.state.auth.status.loggedIn;
+        },
+    },
+    methods: {
+        logOut() {
+            this.$store.dispatch("auth/logout");
+            this.$router.push("/login");
+        },
+    },
 };
 </script>
 

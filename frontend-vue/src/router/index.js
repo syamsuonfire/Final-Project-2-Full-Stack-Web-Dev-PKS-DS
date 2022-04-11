@@ -2,16 +2,19 @@ import Vue from "vue";
 import Router from "vue-router";
 import DetailItem from "@/components/DetailItem";
 import PsikologiItem from "@/components/PsikologiItem";
-import HelloWorld from "@/components/HelloWorld";
+import HomePage from "@/components/HomePage";
+import RegisterPage from "@/components/RegisterPage";
+import LoginPage from "@/components/LoginPage";
 
 Vue.use(Router);
 
-export default new Router({
+export const router = new Router({
+    mode: "history",
     routes: [
         {
             path: "/",
-            name: "HelloWorld",
-            component: HelloWorld,
+            name: "homepage",
+            component: HomePage,
         },
         {
             path: "/detail/:linkprev/:linkhal",
@@ -23,5 +26,28 @@ export default new Router({
             name: "psikologi",
             component: PsikologiItem,
         },
+        {
+            path: "/register",
+            name: "register",
+            component: RegisterPage,
+        },
+        {
+            path: "/login",
+            name: "login",
+            component: LoginPage,
+        },
     ],
+});
+
+router.beforeEach((to, from, next) => {
+    const publicPages = ["/login", "/register", "/"];
+    const authRequired = !publicPages.includes(to.path);
+    const loggedIn = localStorage.getItem("user");
+    // trying to access a restricted page + not logged in
+    // redirect to login page
+    if (authRequired && !loggedIn) {
+        next("/login");
+    } else {
+        next();
+    }
 });
