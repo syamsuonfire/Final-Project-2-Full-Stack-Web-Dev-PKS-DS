@@ -2,6 +2,9 @@
 
 ## Project : Book Review
 
+![alt text](https://gitlab.com/anisahuji/fullstack/-/raw/master/SS1.png?raw=true)</p>
+![alt text](https://gitlab.com/anisahuji/fullstack/-/raw/master/SS2.png?raw=true)</p>
+
 ## Kelompok 2
 
 Nama Kelompok :
