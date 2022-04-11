@@ -52,6 +52,12 @@
                         ></span>
                         <span>Login</span>
                     </button>
+                    <br />
+                    <router-link to="/register">
+                        <button type="button" class="btn btn-primary">
+                            Doesnt have account? Register here
+                        </button></router-link
+                    >
                 </div>
                 <div class="form-group">
                     <div v-if="message" class="alert alert-danger" role="alert">

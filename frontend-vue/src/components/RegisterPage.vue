@@ -77,6 +77,12 @@
                         <button class="btn btn-primary btn-block">
                             Sign Up
                         </button>
+                        <br />
+                        <router-link to="/login">
+                            <button type="button" class="btn btn-primary">
+                                Have account? Login here
+                            </button></router-link
+                        >
                     </div>
                 </div>
             </form>
