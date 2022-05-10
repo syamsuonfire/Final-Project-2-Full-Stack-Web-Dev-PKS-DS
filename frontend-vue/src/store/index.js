@@ -6,12 +6,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        book: {},
+        movie: {},
+        game: {},
     },
     getters: {},
     mutations: {
-        setBook(state, data) {
-            state.book = data;
+        setMovie(state, data) {
+            state.movie = data;
+        },
+        setGame(state, data) {
+            state.game = data;
         },
     },
     actions: {},

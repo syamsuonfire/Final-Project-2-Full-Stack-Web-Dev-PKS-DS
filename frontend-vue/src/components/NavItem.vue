@@ -19,7 +19,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <router-link to="/"
-                        ><a class="navbar-brand">Book-Review</a></router-link
+                        ><a class="navbar-brand">Movie-Review</a></router-link
                     >
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -31,46 +31,23 @@
                         <li>
                             <router-link to="/">Home</router-link>
                         </li>
-                        <!-- <li>
-                      <a href="#"><router-link to="/listmovie">List Book</router-link></a>
-                  </li> -->
-                        <li class="dropdown">
-                            <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" @click="status=!status">List Book <i class="fa fa-caret-down" aria-hidden="true" v-if="status = !status"></i><i class="fa fa-caret-up" aria-hidden="true" v-if="status = !status"></i></a> -->
-                            <a
-                                href="#"
-                                class="dropdown-toggle"
-                                data-toggle="dropdown"
-                                role="button"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                @click="status = !status"
-                                >List Book
-                                <i
-                                    class="fa fa-caret-down"
-                                    aria-hidden="true"
-                                ></i
-                            ></a>
-                            <ul class="dropdown-menu">
-                                <!-- <div class="row"> -->
-                                <!-- <div class="col-md-6"> -->
-                                <li>
-                                    <router-link
-                                        to="/psikologi/psikologi/1"
-                                        onclick="location.reload()"
-                                        >Psikologi</router-link
-                                    >
-                                </li>
-                                <!-- <li><router-link to="/popular/popular/1" onclick="location.reload()">Pengembangan Diri</router-link></li> -->
-                                <!-- </div> -->
-                                <!-- <div class="col-md-6"> -->
-                                <!-- <li><router-link to="/toprated/toprated/1" onclick="location.reload()">Novel</router-link></li> -->
-                                <!-- <li><router-link to="/upcoming/upcoming/1" onclick="location.reload()">Komik</router-link></li> -->
-                                <!-- </div> -->
-                                <!-- </div> -->
-                                <!-- <li role="separator" class="divider"></li>
-                      <li><router-link to="/listmovie">All List</router-link></li> -->
-                            </ul>
+
+                        <li>
+                            <a href="#"
+                                ><router-link to="/movies"
+                                    >List Movie</router-link
+                                ></a
+                            >
                         </li>
+
+                        <li>
+                            <a href="#"
+                                ><router-link to="/games"
+                                    >List Game</router-link
+                                ></a
+                            >
+                        </li>
+
                         <li v-if="!this.loggedIn">
                             <router-link to="/login">Login</router-link>
                         </li>

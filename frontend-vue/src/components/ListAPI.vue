@@ -1,18 +1,18 @@
 <template>
     <div class="container">
         <div class="row">
-            <span class="label label-warning">Psikologi</span>
-            <router-link to="/psikologi/psikologi/1">
+            <span class="label label-warning">Movies</span>
+            <router-link to="/movies/">
                 <span class="label label-primary">
-                    More Books
+                    More Movies
                     <i
                         class="fa fa-angle-double-right"
                         aria-hidden="true"
                     ></i></span
             ></router-link>
-            <div class="col-sm-3" v-for="item in psikologi" :key="item.id">
-                <a href="#" role="button" @click="detailBook(item)">
-                    <router-link to="/detail/psikologi/1">
+            <div class="col-sm-3" v-for="item in movies" :key="item.id">
+                <a href="#" role="button" @click="detailMovie(item)">
+                    <router-link :to="`/movies/${item.id}`">
                         <div class="vote">
                             <p>Rating: {{ item.rating }}</p>
                         </div>
@@ -33,7 +33,38 @@
             </div>
         </div>
 
-        <!-- <li v-for="index in 5"  style="color:white;">{{nama[index-1]}}</li> -->
+        <div class="row">
+            <span class="label label-warning">Games</span>
+            <router-link to="/games/">
+                <span class="label label-primary">
+                    More Games
+                    <i
+                        class="fa fa-angle-double-right"
+                        aria-hidden="true"
+                    ></i></span
+            ></router-link>
+            <div class="col-sm-3" v-for="item in games" :key="item.id">
+                <a href="#" role="button" @click="detailGame(item)">
+                    <router-link :to="`/games/${item.id}`">
+                        <div class="vote">
+                            <p>Platform: {{ item.platform }}</p>
+                        </div>
+                        <div class="year">
+                            <p>{{ item.release }}</p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <strong>{{ item.name }}</strong>
+                            </p>
+                        </div>
+                        <img :src="item.image_url" alt="" />
+                        <div class="overlay">
+                            <div class="text">Review</div>
+                        </div>
+                    </router-link>
+                </a>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -42,50 +73,61 @@ import axios from "axios";
 export default {
     data() {
         return {
-            psikologi: [],
-            popular: [],
-            toprated: [],
-            upcoming: [],
-            nama: ["a", "b", "c", "d", "e", "f", "g"],
-            filter: [],
+            movies: [],
+            games: [],
         };
     },
     created() {
-        this.getAPI1();
+        this.fetchMovies();
+        this.fetchGames();
     },
     methods: {
-        getAPI1() {
-            axios.get("https://pks.guidelight.id/api/book").then((response) => {
-                this.psikologi = response.data.data;
-                this.filter = response.data.data.filter(
-                    (item) => item.category_id == 1
-                );
-                console.log(response);
-            });
+        fetchMovies() {
+            axios
+                .get("https://backendexample.sanbersy.com/api/data-movie")
+                .then((response) => {
+                    this.movies = response.data;
+                });
             // .catch((err) => {
             //   console.log(err)
             // })
         },
-        detailBook(data) {
-            this.$store.commit("setBook", data);
-            // this.$router.replace({'path': '/detail'})
+        detailMovie(data) {
+            console.log(data);
+            this.$store.commit("setMovie", data);
+            // this.$router.replace({ path: `/movies/${data.id}` });
+        },
+        fetchGames() {
+            axios
+                .get("https://backendexample.sanbersy.com/api/data-game")
+                .then((response) => {
+                    this.games = response.data;
+                });
+            // .catch((err) => {
+            //   console.log(err)
+            // })
+        },
+        detailGame(data) {
+            console.log(data);
+            this.$store.commit("setGame", data);
+            // this.$router.replace({ path: `/games/${data.id}` });
         },
     },
 };
 </script>
 
 <style scoped>
-.book_list .container {
+.movie_list .container {
     padding: 0px;
     margin: 0px;
 }
 
-.book_list .row {
+.movie_list .row {
     position: relative;
     margin-top: 40px;
 }
 
-.book_list img {
+.movie_list img {
     width: 100%;
     height: 270px;
     object-fit: cover;
@@ -94,7 +136,7 @@ export default {
     margin-bottom: 20px;
 }
 
-.book_list .vote p {
+.movie_list .vote p {
     position: absolute;
     /*background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,1));*/
     background: rgba(250, 220, 0, 0.6);
@@ -109,7 +151,7 @@ export default {
     font-size: 13px;
 }
 
-.book_list .year p {
+.movie_list .year p {
     position: absolute;
     /*background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,1));*/
     /*background:rgba(0, 0, 0, 0.5);*/
@@ -149,7 +191,7 @@ export default {
     background: rgba(0, 0, 0, 0.5);
 }
 
-.book_list .label-warning {
+.movie_list .label-warning {
     padding: 9px 13px;
     font-size: 15px;
     font-family: sans-serif;
@@ -159,7 +201,7 @@ export default {
     /* right: 140px; */
 }
 
-.book_list .label-primary {
+.movie_list .label-primary {
     padding: 7px 7px;
     font-size: 15px;
     font-family: sans-serif;
@@ -168,19 +210,19 @@ export default {
     right: 15px;
 }
 
-.book_list .label-primary:hover {
+.movie_list .label-primary:hover {
     /* color: white; */
     opacity: 0.8;
 }
 
-.book_list .col-sm-3:nth-child(3),
-.book_list .col-sm-3:nth-child(4),
-.book_list .col-sm-3:nth-child(5),
-.book_list .col-sm-3:nth-child(6) {
+.movie_list .col-sm-3:nth-child(3),
+.movie_list .col-sm-3:nth-child(4),
+.movie_list .col-sm-3:nth-child(5),
+.movie_list .col-sm-3:nth-child(6) {
     margin-top: 50px;
 }
 
-.book_list .col-sm-3:hover .overlay {
+.movie_list .col-sm-3:hover .overlay {
     bottom: 0px;
     left: 15px;
     width: 89.2%;
@@ -202,15 +244,15 @@ export default {
 }
 
 @media (max-width: 768px) {
-    .book_list .col-sm-3:nth-child(3) {
+    .movie_list .col-sm-3:nth-child(3) {
         margin-top: 100px;
     }
-    .book_list .col-sm-3:nth-child(4),
-    .book_list .col-sm-3:nth-child(5),
-    .book_list .col-sm-3:nth-child(6) {
+    .movie_list .col-sm-3:nth-child(4),
+    .movie_list .col-sm-3:nth-child(5),
+    .movie_list .col-sm-3:nth-child(6) {
         margin-top: 0px;
     }
-    .book_list .row {
+    .movie_list .row {
         margin-top: 30px;
     }
     .label-warning {

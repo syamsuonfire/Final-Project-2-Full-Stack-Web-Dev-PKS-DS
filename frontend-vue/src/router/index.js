@@ -1,10 +1,12 @@
 import Vue from "vue";
 import Router from "vue-router";
-import DetailItem from "@/components/DetailItem";
-import PsikologiItem from "@/components/PsikologiItem";
 import HomePage from "@/components/HomePage";
 import RegisterPage from "@/components/RegisterPage";
 import LoginPage from "@/components/LoginPage";
+import ListMovie from "@/components/ListMovie";
+import ListGame from "@/components/ListGame";
+import DetailMovie from "@/components/DetailMovie";
+import DetailGame from "@/components/DetailGame";
 
 Vue.use(Router);
 
@@ -17,16 +19,6 @@ export const router = new Router({
             component: HomePage,
         },
         {
-            path: "/detail/:linkprev/:linkhal",
-            name: "detail",
-            component: DetailItem,
-        },
-        {
-            path: "/psikologi/:linkprev/:id",
-            name: "psikologi",
-            component: PsikologiItem,
-        },
-        {
             path: "/register",
             name: "register",
             component: RegisterPage,
@@ -35,6 +27,26 @@ export const router = new Router({
             path: "/login",
             name: "login",
             component: LoginPage,
+        },
+        {
+            path: "/movies/",
+            name: "movies",
+            component: ListMovie,
+        },
+        {
+            path: "/movies/:id",
+            name: "detailmovie",
+            component: DetailMovie,
+        },
+        {
+            path: "/games/",
+            name: "games",
+            component: ListGame,
+        },
+        {
+            path: "/games/:id",
+            name: "detailgame",
+            component: DetailGame,
         },
     ],
 });

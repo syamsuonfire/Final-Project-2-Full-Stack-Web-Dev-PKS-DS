@@ -10,6 +10,7 @@
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input
+                        id="email"
                         v-model="user.email"
                         v-validate="'required'"
                         type="text"
@@ -21,12 +22,13 @@
                         class="alert alert-danger"
                         role="alert"
                     >
-                        Username is required!
+                        Email is required!
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input
+                        id="password"
                         v-model="user.password"
                         v-validate="'required'"
                         type="password"

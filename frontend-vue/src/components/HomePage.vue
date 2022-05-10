@@ -4,10 +4,10 @@
         <div class="container">
             <div class="introduce">
                 <h2 class="page-header">WELCOME</h2>
-                <p>Welcome to Book Review</p>
+                <p>Welcome to MovieGames Review</p>
             </div>
             <!-- <div class="container"> -->
-            <div class="book_list">
+            <div class="movie_list">
                 <ListAPI />
             </div>
         </div>
@@ -66,7 +66,7 @@ export default {
     font-family: "Raleway", cursive;
 }
 
-.book_list {
+.movie_list {
     /* width: auto; */
     height: auto;
     background: rgba(0, 0, 0, 0.5) !important;
@@ -130,7 +130,7 @@ export default {
     .introduce {
         margin-bottom: 20px;
     }
-    .book_list {
+    .movie_list {
         margin-top: 20px;
         margin-bottom: 20px;
     }

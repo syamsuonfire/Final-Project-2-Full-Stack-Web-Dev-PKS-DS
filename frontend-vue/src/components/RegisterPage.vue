@@ -9,8 +9,9 @@
             <form name="form" @submit.prevent="handleRegister">
                 <div v-if="!successful">
                     <div class="form-group">
-                        <label for="username">Name</label>
+                        <label for="name">Name</label>
                         <input
+                            id="name"
                             v-model="user.name"
                             v-validate="'required|min:3|max:20'"
                             type="text"
@@ -26,24 +27,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="username">Username</label>
-                        <input
-                            v-model="user.username"
-                            v-validate="'required|min:3|max:20'"
-                            type="text"
-                            class="form-control"
-                            name="username"
-                        />
-                        <div
-                            v-if="submitted && errors.has('username')"
-                            class="alert-danger"
-                        >
-                            {{ errors.first("username") }}
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="email">Email</label>
                         <input
+                            id="email"
                             v-model="user.email"
                             v-validate="'required|email|max:50'"
                             type="email"
@@ -60,6 +46,7 @@
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input
+                            id="password"
                             v-model="user.password"
                             v-validate="'required|min:6|max:40'"
                             type="password"

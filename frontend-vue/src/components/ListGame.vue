@@ -1,39 +1,36 @@
 <template>
-    <div class="psikologi" id="top">
+    <div class="movie" id="top">
         <NavItem />
-        <div class="psikologi_text">
-            <h1 rel="stylesheet">Psikologi</h1>
+        <div class="movie_text">
+            <h1 rel="stylesheet">Games</h1>
             <ol class="breadcrumb">
                 <li><router-link to="/">Home</router-link></li>
-                <li>Psikologi</li>
-                <li>{{ this.halaman }}</li>
+                <li>Games</li>
             </ol>
         </div>
         <div class="container">
-            <div class="book_list">
+            <div class="movie_list">
                 <div class="row">
                     <div
                         class="col-sm-3"
-                        v-for="np in psikologi"
-                        v-bind:key="np.id"
+                        v-for="game in games"
+                        v-bind:key="game.id"
                     >
-                        <a href="#" role="button" @click="detailBook(np)">
-                            <router-link
-                                :to="'/detail/psikologi/' + $route.params.id"
-                            >
+                        <a href="#" role="button" @click="detailGame(game)">
+                            <router-link :to="`/games/${game.id}`">
                                 <div class="vote">
-                                    <p>Rating: {{ np.rating }}</p>
+                                    <p>Platform: {{ game.platform }}</p>
                                 </div>
                                 <div class="release_date">
-                                    <p>{{ np.release_date }}</p>
+                                    <p>{{ game.release }}</p>
                                 </div>
                                 <div class="title">
                                     <p>
-                                        <strong>{{ np.title }}</strong>
+                                        <strong>{{ game.name }}</strong>
                                     </p>
                                 </div>
                                 <!-- <div class="image"> -->
-                                <img :src="np.image_url" alt="" />
+                                <img :src="game.image_url" alt="" />
                                 <!-- </div> -->
                                 <div class="overlay">
                                     <div class="text">Review</div>
@@ -44,25 +41,6 @@
                 </div>
             </div>
         </div>
-        <!-- <nav aria-label="Page navigation">
-      <ul class="pagination">
-        <li>
-          <a aria-label="Previous">
-            <span aria-hidden="true" >&laquo;</span>
-          </a>
-        </li>
-      </ul>
-      <ul class="pagination" v-for="index in 20">
-        <li><router-link :to="'/psikologi/'+index" onclick="location.reload()">{{index}}</router-link></li>
-      </ul>
-      <ul class="pagination">
-        <li>
-          <a aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav> -->
         <FooterItem />
     </div>
 </template>
@@ -72,29 +50,11 @@ import NavItem from "./NavItem";
 import FooterItem from "./FooterItem";
 import axios from "axios";
 
-// export default {
-//   name: 'HelloWorld',
-//   data () {
-//     return {
-//       msg: 'Welcome to Your Vue.js App'
-//     }
-//   },
-//   components: {
-//     Nav,
-//     Footer
-//   }
-// }
-
 export default {
-    computed: {
-        halaman() {
-            return this.$route.params.id;
-        },
-    },
+    computed: {},
     data() {
         return {
-            psikologi: [],
-            page: 1,
+            games: [],
         };
     },
     components: {
@@ -102,33 +62,30 @@ export default {
         FooterItem,
     },
     created() {
-        this.getAPI1();
+        this.fetchGames();
     },
     methods: {
-        getAPI1() {
-            axios.get("https://pks.guidelight.id/api/book").then((response) => {
-                this.psikologi = response.data.data;
-                this.filter = response.data.data.filter(
-                    (item) => item.category_id == 1
-                );
-                console.log(response);
-            });
+        fetchGames() {
+            axios
+                .get("https://backendexample.sanbersy.com/api/data-game")
+                .then((response) => {
+                    this.games = response.data;
+                });
 
-            console.log(this.psikologi);
             // .catch((err) => {
             //   console.log(err)
             // })
         },
-        detailBook(data) {
-            this.$store.commit("setBook", data);
-            // this.$router.replace({'path': '/detail'})
+        detailGame(data) {
+            this.$store.commit("setGame", data);
+            // this.$router.replace({ path: `/games/${data.id}` });
         },
     },
 };
 </script>
 
 <style scoped>
-.psikologi {
+.movie {
     /* background: url(../assets/bg.jpg) no-repeat center center fixed !important; */
     background: url(https://preview.ibb.co/co60fH/bg.jpg) no-repeat center
         center fixed !important;
@@ -136,7 +93,7 @@ export default {
     padding-top: 30px !important;
 }
 
-.psikologi_text h1 {
+.movie_text h1 {
     font-family: "Lobster", cursive;
     color: white;
     /*margin-left: 105px;*/
@@ -145,7 +102,7 @@ export default {
     margin-bottom: 40px;
 }
 
-.psikologi_text .breadcrumb {
+.movie_text .breadcrumb {
     /* background-color: transparent; */
     background: rgba(0, 0, 0, 0.5);
     /* width: 19%; */
@@ -158,16 +115,16 @@ export default {
     color: white;
 }
 
-.psikologi_text .breadcrumb li:nth-child(1) {
+.movie_text .breadcrumb li:nth-child(1) {
     color: #337ab7 !important;
 }
 
-.psikologi_text .breadcrumb li a:hover {
+.movie_text .breadcrumb li a:hover {
     opacity: 0.8 !important;
     color: #337ab7 !important;
 }
 
-.book_list {
+.movie_list {
     /* width: auto; */
     height: auto;
     background: rgba(0, 0, 0, 0.5) !important;
@@ -175,29 +132,29 @@ export default {
     padding: 30px 30px 0px 30px;
 }
 
-.psikologi .container {
+.movie .container {
     width: auto;
     /* margin: auto; */
     padding: 0px 105px;
 }
 
-.book_list .container {
+.movie_list .container {
     padding: 0px;
     margin: 0px;
 }
 
-.book_list .row {
+.movie_list .row {
     position: relative;
     /* margin-bottom: 40px; */
 }
 
-.book_list img {
+.movie_list img {
     width: 100%;
     /* width: 247px; */
     margin-bottom: 20px;
 }
 
-.book_list .vote p {
+.movie_list .vote p {
     position: absolute;
     /*background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,1));*/
     background: rgba(250, 220, 0, 0.6);
@@ -212,7 +169,7 @@ export default {
     font-size: 13px;
 }
 
-.book_list .release_date p {
+.movie_list .release_date p {
     position: absolute;
     /*background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,1));*/
     /*background:rgba(0, 0, 0, 0.5);*/
@@ -252,7 +209,7 @@ export default {
     background: rgba(0, 0, 0, 0.5);
 }
 
-.book_list .label-warning {
+.movie_list .label-warning {
     padding: 7px 7px;
     font-size: 15px;
     font-family: sans-serif;
@@ -261,7 +218,7 @@ export default {
     /* right: 140px; */
 }
 
-.book_list .label-primary {
+.movie_list .label-primary {
     padding: 7px 7px;
     font-size: 15px;
     font-family: sans-serif;
@@ -270,20 +227,20 @@ export default {
     right: 15px;
 }
 
-.book_list .label-primary a:hover {
+.movie_list .label-primary a:hover {
     color: white;
     opacity: 0.8;
 }
 
-/* .book_list span:nth-child(3), .book_list span:nth-child(4), .book_list span:nth-child(5){
+/* .movie_list span:nth-child(3), .movie_list span:nth-child(4), .movie_list span:nth-child(5){
   margin-top: 20px;
 } */
 
-/* .book_list .col-sm-3:nth-child(3), .book_list .col-sm-3:nth-child(4), .book_list .col-sm-3:nth-child(5), .book_list .col-sm-3:nth-child(6){
+/* .movie_list .col-sm-3:nth-child(3), .movie_list .col-sm-3:nth-child(4), .movie_list .col-sm-3:nth-child(5), .movie_list .col-sm-3:nth-child(6){
   margin-top: 50px;
 } */
 
-.book_list .col-sm-3:hover .overlay {
+.movie_list .col-sm-3:hover .overlay {
     bottom: 0px;
     left: 15px;
     width: 89.2%;
@@ -332,7 +289,7 @@ nav .pagination .active a{
 } */
 
 @media (max-width: 768px) {
-    .psikologi {
+    .movie {
         background: url(https://preview.ibb.co/co60fH/bg.jpg) no-repeat left
             fixed !important;
         background-size: cover !important;
@@ -341,10 +298,10 @@ nav .pagination .active a{
     .breadcrumb {
         margin: 0px 20px 20px 20px !important;
     }
-    .psikologi .container {
+    .movie .container {
         padding: 0px 20px;
     }
-    .book_list {
+    .movie_list {
         margin-bottom: 20px;
     }
 }

@@ -3,37 +3,24 @@
         <Nav />
         <div class="container konten">
             <div class="text_review">
-                <h1>book Review</h1>
+                <h1>Game Review</h1>
                 <ol class="breadcrumb">
                     <li><router-link to="/">Home</router-link></li>
                     <li>
-                        <router-link
-                            :to="
-                                '/' +
-                                this.linkPage +
-                                '/' +
-                                this.linkPage +
-                                '/' +
-                                linkHal
-                            "
-                            >{{ this.linkPage }}</router-link
-                        >
+                        <router-link :to="'/games'">Games</router-link>
                     </li>
-                    <li>{{ this.linkHal }}</li>
+                    <li>{{ game.name }}</li>
                 </ol>
             </div>
 
             <div class="konten_review">
                 <div class="row">
                     <div class="col-md-4 col-xs-12 kiri">
-                        <img :src="book.image_url" alt="" />
+                        <img :src="game.image_url" alt="" />
                     </div>
                     <div class="col-md-8 col-xs-12 kanan">
                         <div class="title">
-                            <h1>{{ book.title }}</h1>
-                            <!-- <h2>jumlah trailer video: {{vids.length}} </h2> -->
-                            <!-- <h3>{{returnid}}</h3>
-                <li v-for="v in vids">{{v.key}}</li> -->
+                            <h1>{{ game.name }}</h1>
                         </div>
                         <div>
                             <h4>
@@ -41,19 +28,13 @@
                                     class="fa fa-bookmark"
                                     aria-hidden="true"
                                 ></i>
-                                {{ book.category.category_name }}
-                            </h4>
-                        </div>
-                        <div>
-                            <h4>
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                {{ book.author.name }}
+                                {{ game.genre }}
                             </h4>
                         </div>
                         <div class="vote">
                             <h4>
                                 <i class="fa fa-star-o" aria-hidden="true"></i>
-                                {{ book.rating }}
+                                {{ game.platform }}
                             </h4>
                         </div>
                         <div class="release_date">
@@ -62,22 +43,13 @@
                                     class="fa fa-calendar-o"
                                     aria-hidden="true"
                                 ></i>
-                                {{ book.year }}
+                                {{ game.release }}
                             </h4>
                         </div>
                         <div class="overview">
-                            <p>{{ book.description }}</p>
+                            <p>{{ game.description }}</p>
                         </div>
-                        <router-link
-                            :to="
-                                '/' +
-                                this.linkPage +
-                                '/' +
-                                this.linkPage +
-                                '/' +
-                                linkHal
-                            "
-                        >
+                        <router-link :to="'/games'">
                             <button
                                 type="button"
                                 class="btn btn-primary"
@@ -90,53 +62,7 @@
                                 Back
                             </button>
                         </router-link>
-                        <!-- <router-link to="/nowplaying/nowplaying/1"><button type="button" class="btn btn-default" name="button"> Now Playing </button></router-link>
-              <router-link to="/popular/popular/1"><button type="button" class="btn btn-default" name="button"> Popular Book </button></router-link>
-              <router-link to="/toprated/toprated/1"><button type="button" class="btn btn-default" name="button"> Top Rated </button></router-link>
-              <router-link to="/upcoming/upcoming/1"><button type="button" class="btn btn-default" name="button"> Up Coming </button></router-link> -->
-                        <!-- <button class="btn btn-danger" type="button" name="button" @click="status=!status">Video Trailer <i class="fa fa-caret-down" aria-hidden="true" v-if="status = !status"></i><i class="fa fa-caret-up" aria-hidden="true" v-if="status = !status"></i></button> -->
                     </div>
-                </div>
-            </div>
-            <div class="trailer">
-                <!-- <div class="slider">
-            <div id="" class="myCarousel carousel slide" data-ride="carousel">
-
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <div class="embed-responsive embed-responsive-4by3">
-                          <iframe class="embed-responsive-item" allowfullscreen v-bind:src="'https://www.youtube.com/embed/'+vids[0].key"></iframe>
-                        </div>
-                    </div>
-                    <div class="item" v-for="index in vids.length-1">
-                        <div class="embed-responsive embed-responsive-4by3">
-                          <iframe class="embed-responsive-item" allowfullscreen v-bind:src="'https://www.youtube.com/embed/'+vids[index].key"></iframe>
-                        </div>
-                    </div>
-
-                </div>
-
-                  <a class="left carousel-control" href=".myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="right carousel-control" href=".myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
-              </div> -->
-                <div
-                    class="embed-responsive embed-responsive-4by3"
-                    v-if="status"
-                >
-                    <iframe
-                        class="embed-responsive-item"
-                        allowfullscreen
-                        v-bind:src="
-                            'https://www.youtube.com/embed/' + vids[0].key
-                        "
-                    ></iframe>
                 </div>
             </div>
         </div>
@@ -148,18 +74,9 @@
 import FooterItem from "./FooterItem";
 export default {
     computed: {
-        book() {
-            return this.$store.state.book;
+        game() {
+            return this.$store.state.game;
         },
-        linkPage() {
-            return this.$route.params.linkprev;
-        },
-        linkHal() {
-            return this.$route.params.linkhal;
-        },
-        // returnid(){
-        //   return this.$store.state.book.id
-        // }
     },
     data() {
         return {
